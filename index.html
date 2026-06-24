@@ -6,71 +6,103 @@
 <title>Tipovačka MS 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
-.container{max-width:1400px;margin:0 auto}
-.header{text-align:center;margin-bottom:30px}
-.header h1{font-size:2.5rem;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
-.header p{color:#94a3b8}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:30px}
-.stat-card{background:#1e293b;padding:20px;border-radius:12px;border:1px solid #334155}
-.stat-label{font-size:0.85rem;color:#94a3b8;margin-bottom:5px}
-.stat-value{font-size:2rem;font-weight:bold;color:#3b82f6}
-.tabs{display:flex;gap:10px;margin-bottom:20px;border-bottom:2px solid #334155;flex-wrap:wrap}
-.tab{padding:12px 24px;background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1rem;border-bottom:3px solid transparent;margin-bottom:-2px}
-.tab.active{color:#3b82f6;border-bottom-color:#3b82f6}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f172a;color:#e2e8f0;padding:0}
+.header-bg{background:#1e293b;padding:20px 20px 30px;border-bottom:1px solid #334155}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.header{display:flex;align-items:center;gap:15px;margin-bottom:8px}
+.header h1{font-size:1.8rem;color:#3b82f6;font-weight:700}
+.header p{color:#94a3b8;font-size:0.9rem;margin-left:50px;margin-top:-5px}
+.btn-update{width:100%;padding:14px;background:#3b82f6;border:none;border-radius:8px;color:white;font-size:1rem;font-weight:600;cursor:pointer;margin:20px 0;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-update:hover{background:#2563eb}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.stat-card{background:#1e293b;padding:16px;border-radius:12px;border:1px solid #334155}
+.stat-label{font-size:0.75rem;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+.stat-value{font-size:1.5rem;font-weight:700;margin-bottom:4px}
+.stat-value.blue{color:#3b82f6}
+.stat-value.green{color:#10b981}
+.stat-value.yellow{color:#fbbf24}
+.stat-sub{font-size:0.85rem;color:#64748b}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.tab-btn{padding:12px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#94a3b8;cursor:pointer;font-size:0.95rem;display:flex;align-items:center;justify-content:center;gap:6px}
+.tab-btn.active{background:#3b82f6;border-color:#3b82f6;color:white}
 .tab-content{display:none}
 .tab-content.active{display:block}
+.legend{display:flex;gap:20px;align-items:center;padding:16px;background:#1e293b;border-radius:8px;margin-bottom:15px;font-size:0.9rem}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-box{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem}
+.legend-box.hit{background:#16a34a;color:white}
+.legend-box.miss{background:#dc2626;color:white}
+.legend-box.none{background:#334155;color:#64748b}
+.legend-text{color:#94a3b8;font-size:0.85rem;margin-top:8px}
 table{width:100%;border-collapse:collapse;background:#1e293b;border-radius:12px;overflow:hidden}
-th{background:#0f172a;padding:12px 8px;text-align:center;font-weight:600;color:#94a3b8;font-size:0.85rem}
+th{background:#0f172a;padding:12px 8px;text-align:center;font-weight:600;color:#94a3b8;font-size:0.8rem}
 td{padding:12px 8px;border-top:1px solid #334155;text-align:center}
 tr:hover{background:#0f172a}
-.badge{display:inline-block;padding:4px 8px;border-radius:4px;font-size:0.75rem;font-weight:600}
+.badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:0.7rem;font-weight:600}
 .badge-leader{background:#16a34a;color:white}
-.badge-hit{background:#16a34a;color:white;padding:2px 6px;border-radius:3px}
-.badge-miss{background:#334155;color:#94a3b8;padding:2px 6px;border-radius:3px}
-.match-row{display:flex;justify-content:space-between;align-items:center;padding:15px;background:#1e293b;margin-bottom:10px;border-radius:8px;border:1px solid #334155}
-.match-name{flex:1;font-weight:500}
+.match-card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px;margin-bottom:12px}
+.match-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.match-title{font-weight:600;font-size:1.1rem}
+.match-date{color:#64748b;font-size:0.85rem}
 .match-result{padding:6px 12px;background:#16a34a;border-radius:6px;font-weight:bold}
-.group-title{background:#0f172a;padding:10px;margin:20px 0 10px;border-radius:8px;font-weight:bold;color:#3b82f6}
+.tip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:8px;margin-top:12px}
+.tip-box{padding:8px;border-radius:6px;text-align:center;font-weight:700;font-size:0.9rem}
+.tip-box.hit{background:#16a34a;color:white}
+.tip-box.miss{background:#dc2626;color:white}
+.tip-box.none{background:#334155;color:#64748b}
+.tip-name{font-size:0.7rem;margin-top:4px;color:#94a3b8}
+.winner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.winner-card{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px;text-align:center}
+.winner-name{font-size:0.8rem;color:#94a3b8;margin-bottom:6px}
+.winner-pick{font-weight:700;color:#3b82f6}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>🏆 Tipovačka MS 2026</h1>
-    <p>Aktualizováno: 24.6.2026 · 49 z 72 zápasů odehráno · 3. kolo běží</p>
+<div class="header-bg">
+  <div class="container" style="padding:0">
+    <div class="header">
+      <span style="font-size:2rem">🏆</span>
+      <h1>Tipovačka MS 2026</h1>
+    </div>
+    <p>Žebříček a statistiky naší tipovačky</p>
+    <button class="btn-update" onclick="location.reload()">
+      <span>⟳</span> Aktualizovat
+    </button>
   </div>
+</div>
 
+<div class="container">
   <div class="stats">
     <div class="stat-card">
       <div class="stat-label">VEDOUCÍ</div>
-      <div class="stat-value">Štěpán & Vosa</div>
-      <div style="color:#94a3b8;font-size:0.9rem;margin-top:5px">31 bodů</div>
+      <div class="stat-value blue" id="leader-name">Štěpán & Vosa</div>
+      <div class="stat-sub blue" id="leader-points">31 bodů</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">ÚSPĚŠNOST</div>
-      <div class="stat-value">63%</div>
-      <div style="color:#94a3b8;font-size:0.9rem;margin-top:5px">31/49 tipů</div>
+      <div class="stat-label">ÚSPĚŠNOST VEDOUCÍHO</div>
+      <div class="stat-value green" id="success-rate">63.3%</div>
+      <div class="stat-sub" id="success-detail">31/49</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">ODEHRÁNO</div>
       <div class="stat-value">49</div>
-      <div style="color:#94a3b8;font-size:0.9rem;margin-top:5px">z 72 zápasů</div>
+      <div class="stat-sub">z 72 zápasů skupiny</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">NÁSKOK V ČELE</div>
-      <div class="stat-value">1</div>
-      <div style="color:#94a3b8;font-size:0.9rem;margin-top:5px">bod před Bráchou</div>
+      <div class="stat-value yellow" id="lead">1 bodů</div>
+      <div class="stat-sub">před druhým</div>
     </div>
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="showTab('table')">Tabulka</button>
-    <button class="tab" onclick="showTab('matches')">Odehrané zápasy</button>
-    <button class="tab" onclick="showTab('tips')">Přehled tipů</button>
+    <button class="tab-btn active" onclick="showTab('zebricek')">🥇 Žebříček</button>
+    <button class="tab-btn" onclick="showTab('zapasy')">⚽ Zápasy</button>
+    <button class="tab-btn" onclick="showTab('tipy')">📋 Všechny tipy</button>
+    <button class="tab-btn" onclick="showTab('vitez')">👑 Vítěz MS</button>
   </div>
 
-  <div id="table-tab" class="tab-content active">
+  <div id="zebricek-tab" class="tab-content active">
     <table>
       <thead>
         <tr><th>#</th><th>Hráč</th><th>Body</th><th>Přesné</th><th>1X2</th></tr>
@@ -79,14 +111,33 @@ tr:hover{background:#0f172a}
     </table>
   </div>
 
-  <div id="matches-tab" class="tab-content">
-    <div id="matches-list"></div>
+  <div id="zapasy-tab" class="tab-content">
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-box hit">1</div>
+        <span>trefil</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-box miss">1</div>
+        <span>netrefil</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-box none">-</div>
+        <span>netipoval</span>
+      </div>
+    </div>
+    <div class="legend-text">1 domácí · 0 remíza · 2 hosté</div>
+    <div id="matches-list" style="margin-top:15px"></div>
   </div>
 
-  <div id="tips-tab" class="tab-content">
+  <div id="tipy-tab" class="tab-content">
     <div style="overflow-x:auto">
-      <table id="tips-table" style="min-width:1000px"></table>
+      <table id="tips-table" style="min-width:1200px;font-size:0.85rem"></table>
     </div>
+  </div>
+
+  <div id="vitez-tab" class="tab-content">
+    <div class="winner-grid" id="winner-list"></div>
   </div>
 </div>
 
@@ -110,17 +161,31 @@ const PLAYERS = {
   "Šimon": {points: 22, exact: 7, winner: 8}
 };
 
-const RESULTS = {
-  "Bosna a Hercegovina - Katar": "1:1",
-  "Mexiko - JAR": "2:0",
-  "Jižní Korea - Česko": "2:1",
-  "Kanada - Bosna a Hercegovina": "1:1",
-  "USA - Paraguay": "1:1",
-  "Katar - Švýcarsko": "1:1"
+const WINNER_TIPS = {
+  "Kulča": "MEXIKO", "Andy": "FRANCIE", "Hejk": "Brazílie", "Příba": "1",
+  "Štěpán": "Španělsko", "Vosa": "Francie", "Brácha": "Argentina", "Árčí": "Španělsko",
+  "Janča": "", "Smůťa": "", "Míša": "", "Vojta": "Španělsko",
+  "Kamča": "Španělsko", "Míňa": "Německo", "Bochy": "UK", "Vráťa": "",
+  "Šimon": "Španělsko"
 };
 
-const ALL_MATCHES = [
-  {name:"Bosna a Hercegovina - Katar", group:"B", date:"24.6", tips:{"Kulča":0,"Andy":1,"Hejk":1,"Příba":1,"Štěpán":1,"Vosa":1,"Brácha":1,"Árčí":1,"Janča":1,"Vojta":1,"Kamča":1,"Míňa":1,"Bochy":1,"Vráťa":0,"Šimon":1}, result:"1:1"}
+const MATCHES = [
+  {
+    name: "Bosna a Hercegovina - Katar",
+    date: "24.6. 21:00",
+    group: "B",
+    result: "1:1",
+    resultCode: 0,
+    tips: {"Kulča":0,"Andy":1,"Hejk":1,"Příba":1,"Štěpán":1,"Vosa":1,"Brácha":1,"Árčí":1,"Janča":1,"Vojta":1,"Kamča":1,"Míňa":1,"Bochy":1,"Vráťa":0,"Šimon":1}
+  },
+  {
+    name: "Mexiko - JAR",
+    date: "11.6. 21:00",
+    group: "A",
+    result: "2:0",
+    resultCode: 1,
+    tips: {"Kulča":1,"Andy":0,"Hejk":1,"Příba":1,"Štěpán":1,"Vosa":1,"Brácha":1,"Árčí":1,"Janča":1,"Vojta":1,"Kamča":1,"Míňa":1,"Bochy":1,"Vráťa":1,"Šimon":1}
+  }
 ];
 
 function renderTable(){
@@ -139,27 +204,39 @@ function renderTable(){
 }
 
 function renderMatches(){
-  document.getElementById('matches-list').innerHTML = Object.entries(RESULTS).reverse().map(([match, result]) => `
-    <div class="match-row">
-      <div class="match-name">${match}</div>
-      <div class="match-result">${result}</div>
+  document.getElementById('matches-list').innerHTML = MATCHES.map(m => `
+    <div class="match-card">
+      <div class="match-header">
+        <div>
+          <div class="match-title">${m.name}</div>
+          <div class="match-date">${m.group} · ${m.date}</div>
+        </div>
+        <div class="match-result">${m.result}</div>
+      </div>
+      <div class="tip-grid">
+        ${Object.entries(m.tips).map(([name,tip]) => {
+          const hit = tip === m.resultCode;
+          return `<div>
+            <div class="tip-box ${hit?'hit':tip===''?'none':'miss'}">${tip===''?'—':tip===0?'X':tip}</div>
+            <div class="tip-name">${name}</div>
+          </div>`;
+        }).join('')}
+      </div>
     </div>
   `).join('');
 }
 
 function renderTips(){
   const players = Object.keys(PLAYERS);
-  const header = `<thead><tr><th>Zápas</th>${players.map(p=>`<th>${p}</th>`).join('')}<th>Výsledek</th></tr></thead>`;
+  const header = `<thead><tr><th style="text-align:left">Zápas</th>${players.map(p=>`<th>${p}</th>`).join('')}<th>Výsledek</th></tr></thead>`;
 
-  const body = ALL_MATCHES.filter(m=>m.result).map(m => {
-    const r = m.result.split(':');
-    const resultTip = parseInt(r[0]) > parseInt(r[1])? 1 : parseInt(r[0]) < parseInt(r[1])? 2 : 0;
+  const body = MATCHES.map(m => {
     return `<tr>
       <td style="text-align:left;font-weight:500">${m.name}</td>
       ${players.map(p => {
         const tip = m.tips[p];
-        const hit = tip === resultTip;
-        return `<td><span class="${hit? 'badge-hit' : 'badge-miss'}">${tip===0?'X':tip===1?'1':'2'}</span></td>`;
+        const hit = tip === m.resultCode;
+        return `<td><span class="legend-box ${hit?'hit':tip===''?'none':'miss'}">${tip===''?'—':tip===0?'X':tip}</span></td>`;
       }).join('')}
       <td><strong>${m.result}</strong></td>
     </tr>`;
@@ -168,8 +245,19 @@ function renderTips(){
   document.getElementById('tips-table').innerHTML = header + '<tbody>' + body + '</tbody>';
 }
 
+function renderWinner(){
+  document.getElementById('winner-list').innerHTML = Object.entries(WINNER_TIPS)
+    .filter(([n,t])=>t)
+    .map(([name,tip])=>`
+      <div class="winner-card">
+        <div class="winner-name">${name}</div>
+        <div class="winner-pick">${tip}</div>
+      </div>
+    `).join('');
+}
+
 function showTab(tab){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
   event.target.classList.add('active');
   document.getElementById(tab+'-tab').classList.add('active');
@@ -178,6 +266,7 @@ function showTab(tab){
 renderTable();
 renderMatches();
 renderTips();
+renderWinner();
 </script>
 </body>
 </html>
